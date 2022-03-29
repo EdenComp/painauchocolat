@@ -1,0 +1,10 @@
+project
+unit_tests
+*~
+*.a
+*.o
+*.gcda
+*.gcno
+.idea/
+.vscode/
+.ssh/
