@@ -21,10 +21,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Find backup files
-        run: find . -name "*~" -exec echo "::error file={},title="Unwanted file detected"::{}" \;
+      - name: Find unwanted files
+        run: find . -regextype posix-extended -regex '.*\.(a|o|so|gcda|gcno|gcov)' -exec echo "::error file={},title="Unwanted file detected"::{}" \;
+      - name: Find files in tmp
+        run: find . -path '*/tmp/*' -exec echo "::error file={},title="Unwanted file detected"::{}" \;
       - name: Find pain_au_chocolat files
-        run: find . -iname "*pain_au_chocolat*" -exec echo "::error file={},title="Unwanted file detected"::{}" \;
+        run: find . (-iname "*pain_au_chocolat*" -o -name "*~") -exec echo "::error file={},title="Unwanted file detected"::{}" \;
   check_program_compilation:
     name: Check program compilation
     runs-on: ubuntu-latest
