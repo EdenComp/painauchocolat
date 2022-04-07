@@ -28,7 +28,7 @@ jobs:
       - name: Find pain_au_chocolat files
         run: find . -iname "*pain_au_chocolat*" -exec echo "::error file={},title="Unwanted file detected"::{}" \;
       - name: Exit if file is found
-        run: find . -regextype posix-extended -regex '.*\.(a|o|so|gcda|gcno|gcov)' -o -path '*/tmp/*' -o -iname "*pain_au_chocolat*" | grep -q . && exit 1
+        run: find . -regextype posix-extended -regex '.*\.(a|o|so|gcda|gcno|gcov)' -o -path '*/tmp/*' -o -iname "*pain_au_chocolat*" | grep -q . || echo 0 && echo 1
   check_program_compilation:
     name: Check program compilation
     runs-on: ubuntu-latest
