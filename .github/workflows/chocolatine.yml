@@ -26,7 +26,7 @@ jobs:
       - name: Find files in tmp
         run: find . -path '*/tmp/*' -exec echo "::error file={},title="Unwanted file detected"::{}" \;
       - name: Find pain_au_chocolat files
-        run: find . (-iname "*pain_au_chocolat*" -o -name "*~") -exec echo "::error file={},title="Unwanted file detected"::{}" \;
+        run: find . -iname "*pain_au_chocolat*" -o -name "*~" -exec echo "::error file={},title="Unwanted file detected"::{}" \;
   check_program_compilation:
     name: Check program compilation
     runs-on: ubuntu-latest
