@@ -22,7 +22,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Find temporary files
-        run: find . -name "*~" -exec echo "::error file={}::Unwanted file detected" \;
+        run: find . -name "*~" -exec echo "::error file={},title="Unwanted file detected"::{}" \;
   check_program_compilation:
     name: Check program compilation
     runs-on: ubuntu-latest
